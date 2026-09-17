@@ -13,7 +13,7 @@ public class Pagos {
 
     public Pagos(int id, int id_cliente, LocalDate fecha, BigDecimal importe, BigDecimal litros, String combustible) {
         if (id <= 0){
-            System.out.println("El id debe ser positivo. ");
+            System.out.println("El id debe ser positiv. ");
         }
 
         if (id_cliente <= 0){
