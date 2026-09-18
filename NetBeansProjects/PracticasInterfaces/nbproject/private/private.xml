@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Users/Alumno%20Mañana/Documents/Repo%20GitHub/NetBeansProjects/Practicas/src/MansionZombie/Partida.java</file>
+            <file>file:/D:/Users/Alumno%20Mañana/Documents/Repo%20GitHub/NetBeansProjects/PracticasInterfaces/src/MansionZombie/Juego.java</file>
+            <file>file:/D:/Users/Alumno%20Mañana/Documents/Repo%20GitHub/NetBeansProjects/PracticasInterfaces/src/MansionZombie/Zombie.java</file>
+            <file>file:/D:/Users/Alumno%20Mañana/Documents/Repo%20GitHub/NetBeansProjects/PracticasInterfaces/src/MansionZombie/Superviviente.java</file>
+            <file>file:/D:/Users/Alumno%20Mañana/Documents/Repo%20GitHub/NetBeansProjects/PracticasInterfaces/src/MansionZombie/Personajes.java</file>
         </group>
     </open-files>
 </project-private>
