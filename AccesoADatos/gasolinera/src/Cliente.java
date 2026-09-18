@@ -9,7 +9,7 @@ public class Cliente {
 
     public Cliente(int id, String nombre, String telefono, String matricula) {
         if (id <= 0){
-            System.out.println("El id debe ser positivo. ");
+            System.out.println("El id debe ser positiv. ");
         }
 
         if(nombre == null || nombre.trim().isEmpty()){
