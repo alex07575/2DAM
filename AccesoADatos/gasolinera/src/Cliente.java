@@ -9,19 +9,16 @@ public class Cliente {
 
     public Cliente(int id, String nombre, String telefono, String matricula) {
         if (id <= 0){
-            System.out.println("El id debe ser positiv. ");
+            throw new IllegalArgumentException("El id debe ser positivo.");
         }
-
-        if(nombre == null || nombre.trim().isEmpty()){
-            System.out.println("El nombre es obligatorio. ");
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre es obligatorio.");
         }
-
-        if(matricula == null || matricula.trim().isEmpty()){
-            System.out.println("La matricula es obligatoria. ");
+        if (telefono == null || telefono.trim().isEmpty()) {
+            throw new IllegalArgumentException("El teléfono es obligatorio.");
         }
-
-        if(telefono == null || telefono.trim().isEmpty()){
-            System.out.println("El telefono es obligatorio. ");
+        if (matricula == null || matricula.trim().isEmpty()) {
+            throw new IllegalArgumentException("La matrícula es obligatoria.");
         }
 
         this.id = id;
@@ -55,6 +52,8 @@ public class Cliente {
     public String getMatricula() {
         return matricula;
     }
+
+
 }
 
 

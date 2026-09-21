@@ -13,27 +13,27 @@ public class Pagos {
 
     public Pagos(int id, int id_cliente, LocalDate fecha, BigDecimal importe, BigDecimal litros, String combustible) {
         if (id <= 0){
-            System.out.println("El id debe ser positivo. ");
+            throw new IllegalArgumentException("El id debe ser positivo. ");
         }
 
         if (id_cliente <= 0){
-            System.out.println("El id del cliente debe ser positivo. ");
+            throw new IllegalArgumentException("El id del cliente debe ser positivo. ");
         }
 
         if(fecha == null){
-            System.out.println("La fecha es obligatoria. ");
+            throw new IllegalArgumentException("La fecha es obligatoria. ");
         }
 
         if(importe == null || importe.signum()<=0){
-            System.out.println("El importe debe ser mayor que cero. ");
+            throw new IllegalArgumentException("El importe debe ser mayor que cero. ");
         }
 
         if(litros == null || litros.signum()<=0){
-            System.out.println("Los litros deben ser mayor que 0. ");
+            throw new IllegalArgumentException("Los litros deben ser mayor que 0. ");
         }
 
         if(combustible == null || combustible.trim().isEmpty()){
-            System.out.println("Es obligatoria la cantidad de combustible. ");
+            throw new IllegalArgumentException("Es obligatoria la cantidad de combustible. ");
         }
 
         this.id = id;
@@ -79,4 +79,6 @@ public class Pagos {
     public String getCombustible() {
         return combustible;
     }
+
+
 }
