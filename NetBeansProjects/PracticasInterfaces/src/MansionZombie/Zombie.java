@@ -4,7 +4,7 @@ import MansionZombie.Personajes;
 
 public class Zombie extends Personajes{
 
-    private int habitacion;
+    protected int habitacion;
     
     public Zombie(int habitacion) {
         this.habitacion = habitacion;
@@ -16,21 +16,9 @@ public class Zombie extends Personajes{
         return habitacion;
     }
 
-    public int getPuntosVida() {
-        return puntosVida;
-    }
-
-    public void setPuntosVida(int puntosVida) {
-        this.puntosVida = puntosVida;
-    }
-
-    public int getPuntosAtaque() {
-        return puntosAtaque;
-    }
-
     @Override
     public String toString() {
-        return "/nZombie{" + "habitacion=" + habitacion + '}';
+        return "\nZombie{" + "habitacion=" + habitacion + '}';
     }
 
     
