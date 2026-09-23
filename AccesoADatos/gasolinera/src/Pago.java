@@ -1,17 +1,16 @@
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Objects;
 
-public class Pagos {
+import java.time.LocalDate;
+
+public class Pago {
     private int id;
     private int id_cliente;
     private LocalDate fecha;
-    private BigDecimal importe;
-    private BigDecimal litros;
+    private double importe;
+    private double litros;
     private String combustible;
 
 
-    public Pagos(int id, int id_cliente, LocalDate fecha, BigDecimal importe, BigDecimal litros, String combustible) {
+    public Pago(int id, int id_cliente, LocalDate fecha, double importe, double litros, String combustible) {
         if (id <= 0){
             throw new IllegalArgumentException("El id debe ser positivo. ");
         }
@@ -24,11 +23,11 @@ public class Pagos {
             throw new IllegalArgumentException("La fecha es obligatoria. ");
         }
 
-        if(importe == null || importe.signum()<=0){
+        if(importe <= 0){
             throw new IllegalArgumentException("El importe debe ser mayor que cero. ");
         }
 
-        if(litros == null || litros.signum()<=0){
+        if(litros <=0 ){
             throw new IllegalArgumentException("Los litros deben ser mayor que 0. ");
         }
 
@@ -39,8 +38,8 @@ public class Pagos {
         this.id = id;
         this.id_cliente = id_cliente;
         this.fecha = fecha;
-        this.importe = importe.setScale(2);
-        this.litros = litros.setScale(2);
+        this.importe = importe;
+        this.litros = litros;
         this.combustible = combustible.trim();
     }
 
@@ -68,11 +67,11 @@ public class Pagos {
         return id_cliente;
     }
 
-    public BigDecimal getImporte() {
+    public double getImporte() {
         return importe;
     }
 
-    public BigDecimal getLitros() {
+    public double getLitros() {
         return litros;
     }
 

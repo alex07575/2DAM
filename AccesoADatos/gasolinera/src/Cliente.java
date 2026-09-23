@@ -38,22 +38,39 @@ public class Cliente {
     }
 
     public int getId() {
+
         return id;
     }
 
     public String getNombre() {
+
         return nombre;
     }
 
     public String getTelefono() {
+
         return telefono;
     }
 
     public String getMatricula() {
+
         return matricula;
     }
 
+    public boolean coincideCon(String texto) {
+        String buscado = texto.toLowerCase();
 
+        if (nombre.toLowerCase().indexOf(buscado) >= 0) {
+            return true;
+        }
+        if (telefono.toLowerCase().indexOf(buscado) >= 0) {
+            return true;
+        }
+        if (matricula.toLowerCase().indexOf(buscado) >= 0) {
+            return true;
+        }
+        return false;
+    }
 }
 
 
