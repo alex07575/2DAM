@@ -1,32 +1,23 @@
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
-
-public class Main {
+public class Principal {
     static Scanner teclado = new Scanner(System.in);
 
-    public static void main(String[] args) {
-            Gasolinera gasolinera = new Gasolinera();
-            int opcion;
-
-                opcion = leerEntero("Opción: ");
-                switch (opcion) {
-                    case 1 -> altaCliente(gasolinera);
-                    case 2 -> gasolinera.listarClientes();
-                    case 3 -> buscarCliente(gasolinera);
-                    case 4 -> procesarPago(gasolinera);
-                    case 5 -> gasolinera.listarPagos();
-                    case 0 -> System.out.println("Hasta pronto.");
-                    default -> System.out.println("Opción no válida.");
-                }
-
-            } while (opcion != 0);
-
-        } catch (IOException e) {
-            System.out.println("Error con los archivos: " + e.getMessage());
+    public static void main(String[] args) throws IOException {
+        Gasolinera gasolinera = new Gasolinera();
+        int opcion;
+        opcion = leerEntero("Opción: ");
+        switch (opcion) {
+            case 1 -> altaCliente(gasolinera);
+            case 2 -> gasolinera.listarClientes();
+            case 3 -> buscarCliente(gasolinera);
+            case 4 -> procesarPago(gasolinera);
+            case 5 -> gasolinera.listarPagos();
+            case 0 -> System.out.println("Hasta pronto.");
+            default -> System.out.println("Opción no válida.");
         }
     }
-
     public static String leerTexto(String mensaje) {
         System.out.print(mensaje);
         return teclado.nextLine().trim();
@@ -190,4 +181,4 @@ public class Main {
             System.out.println("No se ha podido guardar el pago.");
         }
     }
-    }
+}
