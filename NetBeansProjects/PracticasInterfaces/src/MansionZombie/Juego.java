@@ -104,16 +104,12 @@ public class Juego {
             System.out.println("!Todavía hay zombies!");
             return;
         }
-
         if (busqRes <= 0) {
             System.out.println("No quedan búsquedas.");
             return;
         }
-
         busqRes--;
-
         int dado = (int) (Math.random() * 100) + 1;
-
         if (dado <= 75) {
 
             System.out.println("!Has hecho ruido!");
@@ -147,16 +143,14 @@ public class Juego {
     }
 
     public void avanzar() {
-
         if (zombiesHabitacion > 0) {
-            System.out.println(""
-                    + "!Todavía hay zombies en la habitación!");
+            System.out.println("!Todavía hay zombies en la habitación!");
             return;
         }
 
         if (habitacion == maxHabit) {
             salida = true;
-            System.out.println("!SALIR DE LA MANSIÓN!");
+            System.out.println("!HAS SALIDO DE LA MANSIÓN!");
         } else {
             habitacion++;
             zombiesHabitacion = 1;
