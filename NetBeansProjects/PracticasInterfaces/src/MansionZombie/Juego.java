@@ -1,11 +1,20 @@
 package MansionZombie;
 
-public class Juego extends Superviviente {
-
+public class Juego {
+    int puntosVidaMaximos = 20;
+    int busqRes = 3;
+    int habitacion = 1;
+    int zombiesHabitacion = 1;
+    boolean salida = false;
+    int puntosVida ;
+    int puntosAtaque = 4;
+    boolean botiquin = false;
+    int cantidadArmas = 0;
+    int cantidadProtecciones = 0;
     protected int maxHabit;
-    protected int busqRes = 3;
 
     public void elegirDif(int dificultad) {
+
         if (dificultad == 1) {
             maxHabit = 5;
         } else if (dificultad == 2) {
@@ -14,16 +23,6 @@ public class Juego extends Superviviente {
             System.out.println("No válido. ");
             return;
         }
-
-        busqRes = 3;
-        habitacion = 1;
-        zombiesHabitacion = 1;
-        salida = false;
-        puntosVida = puntosVidaMaximos;
-        puntosAtaque = 4;
-        botiquin = false;
-        cantidadArmas = 0;
-        cantidadProtecciones = 0;
     }
 
     public int getMaxHabit() {
@@ -34,7 +33,24 @@ public class Juego extends Superviviente {
         return busqRes;
     }
 
-    public void combate(Superviviente v, Zombie z) {
+    public boolean isBotiquin() {
+        return botiquin;
+    }
+
+    public int getCantidadArmas() {
+        return cantidadArmas;
+    }
+
+    public int getCantidadProtecciones() {
+        return cantidadProtecciones;
+    }
+
+    
+    
+    public void combate() {
+        Juego j = new Juego();
+        Superviviente v = new Superviviente();
+        Zombie z = new Zombie(habitacion);
         System.out.println("!COMBATE!");
         boolean zVivo = true;
         while (v.getPuntosVida() > 0 && zVivo) {
@@ -42,7 +58,7 @@ public class Juego extends Superviviente {
             int ataqueS = (int) (Math.random() * v.getPuntosAtaque() + 1);
 
             //Si encuentra arma le sube el ataque
-            ataqueS += v.getCantidadArmas();
+            ataqueS += j.getCantidadArmas();
 
             //El z pilla
             z.setPuntosVida(z.getPuntosVida() - ataqueS);
@@ -56,7 +72,7 @@ public class Juego extends Superviviente {
             } else {
                 //EL zombie ataca
                 int ataqueZ = (int) (Math.random() * z.getPuntosAtaque()) + 1;
-                int dañoRec = ataqueZ - v.getCantidadProtecciones();
+                int dañoRec = ataqueZ - j.getCantidadProtecciones();
                 if (dañoRec < 0) {
                     dañoRec = 0;
                 }
@@ -148,5 +164,27 @@ public class Juego extends Superviviente {
 
             System.out.println("Avanzas a la habitación " + habitacion);
         }
+    }
+    public void curarse() {
+        if (zombiesHabitacion > 0) {
+            System.out.println("¡Todavía hay zombies!");
+            return;
+        }
+
+        if (!botiquin) {
+            System.out.println("No tienes botiquín.");
+            return;
+        }
+
+        puntosVida += 4;
+
+        if (puntosVida > puntosVidaMaximos) {
+            puntosVida = puntosVidaMaximos;
+        }
+
+        botiquin = false;
+
+        System.out.println("Te has curado.");
+        System.out.println("Vida actual: " + puntosVida);
     }
 }
