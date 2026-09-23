@@ -10,7 +10,6 @@ public class Gasolinera {
 
     private ArrayList<Cliente> clientes = new ArrayList<>();
     private ArrayList<Pago> pagos = new ArrayList<>();
-
     private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Gasolinera() throws IOException {
@@ -20,33 +19,17 @@ public class Gasolinera {
 
     private void cargarClientes() throws IOException {
         for (String linea : Almacenamiento.leerClientes) {
-            if (!linea.isBlank()) {
-                String[] datos = linea.split(";", -1);
-
-                clientes.add(new Cliente(
-                        Integer.parseInt(datos[0]),
-                        datos[1],
-                        datos[2],
-                        datos[3]
-                ));
-            }
+            String[] datos = linea.split(";");
+            Cliente cliente = new Cliente(Integer.parseInt(datos[0]), datos[1], datos[2], datos[3]);
+            clientes.add(cliente);
         }
     }
 
     private void cargarPagos() throws IOException {
         for (String linea : Almacenamiento.leerPagos) {
-            if (!linea.isBlank()) {
-                String[] datos = linea.split(";", -1);
-
-                pagos.add(new Pago(
-                        Integer.parseInt(datos[0]),
-                        Integer.parseInt(datos[1]),
-                        LocalDate.parse(datos[2]),
-                        Double.parseDouble(datos[3]),
-                        Double.parseDouble(datos[4]),
-                        datos[5]
-                ));
-            }
+            String[] datos = linea.split(";");
+            Pago pago = new Pago(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), LocalDate.parse(datos[2]), Double.parseDouble(datos[3]), Double.parseDouble(datos[4]), datos[5]);
+            pagos.add(pago);
         }
     }
 
@@ -64,13 +47,11 @@ public class Gasolinera {
 
     public int siguienteIdPago() {
         int max = 0;
-
         for (Pago p : pagos) {
             if (p.getId() > max) {
                 max = p.getId();
             }
         }
-
         return max + 1;
     }
 

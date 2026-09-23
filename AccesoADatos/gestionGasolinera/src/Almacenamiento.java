@@ -1,8 +1,8 @@
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,5 +47,32 @@ public class Almacenamiento {
         }
     }
 
-    
+    public static void guardarCliente(Cliente c) throws IOException {
+        try(BufferedWriter bw = Files.newBufferedWriter(CLIENTES, StandardCharsets.UTF_8)) {
+            String linea = c.getId() + ";" + c.getNombre() + ";" +
+                    c.getTelefono() + ";" + c.getMatricula();
+            bw.write(linea);
+            bw.newLine();
+            System.out.println("Cliente guardado: " + c.getNombre());
+        } catch (FileNotFoundException e) {
+            System.out.println("Archivo de clientes no encontrado: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error al guardar cliente: " + e.getMessage());
+        }
+    }
+
+    public static void guardarPago(Pago p) throws IOException {
+        try (BufferedWriter bw = Files.newBufferedWriter(PAGOS, StandardCharsets.UTF_8)) {
+            String linea = p.getId() + ";" + p.getId_cliente() + ";" +
+                    p.getFecha() + ";" + p.getImporte() + ";" +
+                    p.getLitros() + ";" + p.getCombustible();
+            bw.write(linea);
+            bw.newLine();
+            System.out.println("Pago guardado: $" + p.getImporte());
+        } catch (FileNotFoundException e) {
+            System.out.println("Archivo de pagos no encontrado: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error al guardar pago: " + e.getMessage());
+        }
+    }
 }
