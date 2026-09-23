@@ -1,4 +1,5 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -46,51 +47,5 @@ public class Almacenamiento {
         }
     }
 
-    public static void guardarCliente(Cliente c) throws IOException {
-        BufferedWriter writer = null;
 
-        try (BufferedWriter bf = Files.newBufferedWriter(CLIENTES, StandardCharsets.UTF_8)){
-            String linea = c.getId() + ";" + c.getNombre() + ";" +
-                    c.getTelefono() + ";" + c.getMatricula();
-            writer.write(linea);
-            writer.newLine();
-            System.out.println("Cliente guardado: " + c.getNombre());
-        } catch (FileNotFoundException e) {
-            System.out.println("Archivo de clientes no encontrado: " + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("Error al guardar cliente: " + e.getMessage());
-        } finally {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                    System.out.println("Error al cerrar writer: " + e.getMessage());
-                }
             }
-        }
-    }
-    public static void guardarPago(Pago p) throws IOException {
-        BufferedWriter writer = null;
-
-        try (BufferedWriter bf = Files.newBufferedWriter(PAGOS, StandardCharsets.UTF_8)){
-            String linea = p.getId() + ";" + p.getId_cliente() + ";" +
-                    p.getFecha() + ";" + p.getImporte() + ";" +
-                    p.getLitros() + ";" + p.getCombustible();
-            writer.write(linea);
-            writer.newLine();
-            System.out.println("Pago guardado: $" + p.getImporte());
-        } catch (FileNotFoundException e) {
-            System.out.println("Archivo de pagos no encontrado: " + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("Error al guardar pago: " + e.getMessage());
-        } finally {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                    System.out.println("Error al cerrar writer: " + e.getMessage());
-                }
-            }
-        }
-    }
-}

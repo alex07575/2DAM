@@ -1,6 +1,6 @@
 package MansionZombie;
 
-public abstract class Personajes {
+public abstract class Personaje {
     protected int puntosVida;
     protected int puntosAtaque;
 

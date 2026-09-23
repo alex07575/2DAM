@@ -1,8 +1,8 @@
 package MansionZombie;
-import MansionZombie.Personajes;
+import MansionZombie.Personaje;
 
 
-public class Zombie extends Personajes{
+public class Zombie extends Personaje{
 
     protected int habitacion;
     

@@ -1,23 +1,14 @@
-
-
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.format.ResolverStyle;
-import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
     static Scanner teclado = new Scanner(System.in);
 
     public static void main(String[] args) {
-        try {Almacenamiento.preparar();
             Gasolinera gasolinera = new Gasolinera();
             int opcion;
 
-            do {mostrarMenu();
                 opcion = leerEntero("Opción: ");
                 switch (opcion) {
                     case 1 -> altaCliente(gasolinera);
@@ -78,9 +69,6 @@ public class Main {
         System.out.println("1. Alta de cliente");
         System.out.println("2. Listar clientes");
         System.out.println("3. Buscar clientes");
-        System.out.println("4. Procesar un pago de repostaje");
-        System.out.println("5. Consultar pagos");
-        System.out.println("4. Procesar pago");
         System.out.println("5. Consultar pago");
         System.out.println("0. Salir");
     }
@@ -132,7 +120,6 @@ public class Main {
         } while (texto.isEmpty());
         gasolinera.buscarClientes(texto);
     }
-
     public static void procesarPago(Gasolinera gasolinera) {
         if (!gasolinera.hayClientes()) {
             System.out.println("Primero debes dar de alta un cliente.");
@@ -172,7 +159,6 @@ public class Main {
         double importe = 0;
         boolean importeValido = false;
         while (!importeValido) {
-            importe = leerDouble("Importe (€): ");
             if (importe > 0 && dosDecimales(importe)) {
                 importeValido = true;
             } else {
@@ -205,6 +191,3 @@ public class Main {
         }
     }
     }
-
-
-
