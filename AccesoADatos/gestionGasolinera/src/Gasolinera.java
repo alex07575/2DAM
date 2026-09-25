@@ -1,15 +1,13 @@
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Gasolinera {
 
-    private ArrayList<Cliente> clientes = new ArrayList<>();
-    private ArrayList<Pago> pagos = new ArrayList<>();
+    private List<Cliente> clientes = Almacenamiento.leerClientes();
+    private List<Pago> pagos = Almacenamiento.leerPagos();
     private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Gasolinera() throws IOException {
@@ -18,24 +16,21 @@ public class Gasolinera {
     }
 
     private void cargarClientes() throws IOException {
-        for (String linea : Almacenamiento.leerClientes) {
-            String[] datos = linea.split(";");
-            Cliente cliente = new Cliente(Integer.parseInt(datos[0]), datos[1], datos[2], datos[3]);
+        for (Cliente linea : Almacenamiento.leerClientes()) {
+            Cliente cliente = new Cliente(linea.getId(),linea.getNombre(),linea.getTelefono(),linea.getMatricula());
             clientes.add(cliente);
         }
     }
 
     private void cargarPagos() throws IOException {
-        for (String linea : Almacenamiento.leerPagos) {
-            String[] datos = linea.split(";");
-            Pago pago = new Pago(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), LocalDate.parse(datos[2]), Double.parseDouble(datos[3]), Double.parseDouble(datos[4]), datos[5]);
+        for (Pago linea : Almacenamiento.leerPagos()) {
+            Pago pago = new Pago(linea.getId(), linea.getId_cliente(), linea.getFecha(), linea.getImporte(), linea.getLitros(),linea.getCombustible());
             pagos.add(pago);
         }
     }
 
     public int siguienteIdCliente() {
         int max = 0;
-
         for (Cliente c : clientes) {
             if (c.getId() > max) {
                 max = c.getId();

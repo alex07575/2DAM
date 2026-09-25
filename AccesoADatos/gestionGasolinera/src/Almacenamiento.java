@@ -3,8 +3,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 
 public class Almacenamiento {
     private static final Path CARPETA = Path.of("datos");
@@ -23,32 +26,38 @@ public class Almacenamiento {
         }
     }
 
-    public static List<String> leerClientes = new ArrayList<>(); {
-        List<String> clientes = new ArrayList<>();
+    public static List<Cliente> leerClientes() {
+        List<Cliente> clientes = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(CLIENTES, StandardCharsets.UTF_8)) {
             String linea;
             while ((linea = br.readLine()) != null){
-                clientes.add(linea);
+                String [] lineaDividida = linea.split(";");
+                Cliente c1 = new Cliente(Integer.parseInt(lineaDividida[0]),lineaDividida[1],lineaDividida[2],lineaDividida[3]);
+                clientes.add(c1);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return clientes;
     }
 
-    public static List<String> leerPagos = new ArrayList<>();{
-        List<String> pagos = new ArrayList<>();
+    public static List<Pago> leerPagos(){
+        List<Pago> pagos = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(PAGOS, StandardCharsets.UTF_8)) {
             String linea;
             while ((linea = br.readLine()) != null){
-                pagos.add(linea);
+                String[] lineaDiv = linea.split(";");
+                Pago p1 = new Pago(Integer.parseInt(lineaDiv[0]),Integer.parseInt(lineaDiv[1]), LocalDate.parse(lineaDiv[2]),Double.parseDouble(lineaDiv[3]),Double.parseDouble(lineaDiv[4]),lineaDiv[5]);
+                pagos.add(p1);
             }
         } catch (IOException e){
             throw new RuntimeException(e);
         }
+        return pagos;
     }
 
     public static void guardarCliente(Cliente c) throws IOException {
-        try(BufferedWriter bw = Files.newBufferedWriter(CLIENTES, StandardCharsets.UTF_8)) {
+        try(BufferedWriter bw = Files.newBufferedWriter(CLIENTES, StandardCharsets.UTF_8, StandardOpenOption.APPEND,StandardOpenOption.CREATE)) {
             String linea = c.getId() + ";" + c.getNombre() + ";" +
                     c.getTelefono() + ";" + c.getMatricula();
             bw.write(linea);
@@ -62,7 +71,7 @@ public class Almacenamiento {
     }
 
     public static void guardarPago(Pago p) throws IOException {
-        try (BufferedWriter bw = Files.newBufferedWriter(PAGOS, StandardCharsets.UTF_8)) {
+        try (BufferedWriter bw = Files.newBufferedWriter(PAGOS, StandardCharsets.UTF_8, StandardOpenOption.APPEND,StandardOpenOption.CREATE)) {
             String linea = p.getId() + ";" + p.getId_cliente() + ";" +
                     p.getFecha() + ";" + p.getImporte() + ";" +
                     p.getLitros() + ";" + p.getCombustible();
