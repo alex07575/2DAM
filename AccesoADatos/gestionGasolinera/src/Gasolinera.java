@@ -6,11 +6,13 @@ import java.util.List;
 
 public class Gasolinera {
 
-    private List<Cliente> clientes = Almacenamiento.leerClientes();
-    private List<Pago> pagos = Almacenamiento.leerPagos();
+    private List<Cliente> clientes;
+    private List<Pago> pagos;
     private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Gasolinera() throws IOException {
+        clientes = new ArrayList<>();
+        pagos = new ArrayList<>();
         cargarClientes();
         cargarPagos();
     }
