@@ -1,10 +1,16 @@
 fun main(args: Array<String>) {
     //ej01();
-   // ej02();
+    //ej02();
    // ej03();
     //ej04();
     //ej05();
     //0ej06();
+    //ej07();
+    //ej08();
+    //ej09();
+    //ej10();
+    //ej11();
+    ej12();
 }
 
 fun ej01(){
@@ -68,7 +74,65 @@ fun ej06(){
     } while (respuesta != 'd')
 }
 fun ej07(){
-    for (int i = 0 || i <= 100){
-
+    for (num in 0..100) {
+        print("$num ");
     }
 }
+fun ej08(){
+    var num: Int = 0;
+    do {
+          num++;
+            print("$num ");
+    } while (num < 100)
+}
+fun ej09(){
+    var num: Int = 0;
+        do {
+            num++;
+            if (num % 2 == 0 && num % 3 == 0){
+                print("\n$num");
+            }
+        } while (num < 100)
+}
+fun ej10(){
+    var num: Int
+    do {
+        print("Introduce un número: ")
+        num = readln().toInt()
+    } while (num < 0)
+    println("El número es: $num");
+}
+fun ej11(){
+    val contraseña = "1234"
+    var intentos = 3
+    var acertado = false
+
+    while (intentos > 0 && !acertado) {
+        print("Introduce la contraseña: ")
+        val respuesta = readln()
+        if (respuesta == contraseña) {
+            println("Enhorabuena")
+            acertado = true
+        } else {
+            intentos--
+            println("Has fallado. Te quedan $intentos intentos")
+        }
+    }
+}
+fun ej12(){
+
+}
+fun ej13(){
+
+}
+fun ej14(){
+
+}
+fun ej15(){
+
+}fun ej16(){
+
+}fun ej17(){
+
+}
+
