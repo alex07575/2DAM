@@ -30,6 +30,7 @@ public class Almacenamiento {
         List<Cliente> clientes = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(CLIENTES, StandardCharsets.UTF_8)) {
             String linea;
+            clientes.sort();
             while ((linea = br.readLine()) != null){
                 String [] lineaDividida = linea.split(";");
                 Cliente c1 = new Cliente(Integer.parseInt(lineaDividida[0]),lineaDividida[1],lineaDividida[2],lineaDividida[3]);
@@ -45,6 +46,7 @@ public class Almacenamiento {
         List<Pago> pagos = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(PAGOS, StandardCharsets.UTF_8)) {
             String linea;
+            pagos.sort();
             while ((linea = br.readLine()) != null){
                 String[] lineaDiv = linea.split(";");
                 Pago p1 = new Pago(Integer.parseInt(lineaDiv[0]),Integer.parseInt(lineaDiv[1]), LocalDate.parse(lineaDiv[2]),Double.parseDouble(lineaDiv[3]),Double.parseDouble(lineaDiv[4]),lineaDiv[5]);
@@ -58,8 +60,8 @@ public class Almacenamiento {
 
     public static void guardarCliente(Cliente c) throws IOException {
         try(BufferedWriter bw = Files.newBufferedWriter(CLIENTES, StandardCharsets.UTF_8, StandardOpenOption.APPEND,StandardOpenOption.CREATE)) {
-            String linea = c.getId() + ";" + c.getNombre() + ";" +
-                    c.getTelefono() + ";" + c.getMatricula();
+            String linea = c.getId() + "," + c.getNombre() + "," +
+                    c.getTelefono() + "," + c.getMatricula()+ ",";
             bw.write(linea);
             bw.newLine();
             System.out.println("Cliente guardado: " + c.getNombre());
@@ -72,9 +74,9 @@ public class Almacenamiento {
 
     public static void guardarPago(Pago p) throws IOException {
         try (BufferedWriter bw = Files.newBufferedWriter(PAGOS, StandardCharsets.UTF_8, StandardOpenOption.APPEND,StandardOpenOption.CREATE)) {
-            String linea = p.getId() + ";" + p.getId_cliente() + ";" +
-                    p.getFecha() + ";" + p.getImporte() + ";" +
-                    p.getLitros() + ";" + p.getCombustible();
+            String linea = p.getId() + "," + p.getId_cliente() + "," +
+                    p.getFecha() + "," + p.getImporte() + "," +
+                    p.getLitros() + "," + p.getCombustible()+ ";";
             bw.write(linea);
             bw.newLine();
             System.out.println("Pago guardado: $" + p.getImporte());

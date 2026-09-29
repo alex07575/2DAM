@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Cliente {
+public class Cliente implements Comparable<Cliente> {
     private int id;
     private String nombre;
     private String telefono;
@@ -8,7 +8,7 @@ public class Cliente {
 
 
     public Cliente(int id, String nombre, String telefono, String matricula) {
-        if (id <= 0){
+        if (id <= 0) {
             throw new IllegalArgumentException("El id debe ser positivo.");
         }
         if (nombre == null || nombre.trim().isEmpty()) {
@@ -70,6 +70,15 @@ public class Cliente {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public int compareTo(Cliente o) {
+        int resultado = this.nombre.compareTo(o.getNombre());
+        if(resultado == 0){
+            resultado = this.id-o.getId();
+        }
+        return resultado;
     }
 }
 
