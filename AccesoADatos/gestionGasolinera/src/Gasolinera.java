@@ -166,8 +166,4 @@ public class Gasolinera {
             return null;
         }
     }
-
-    public boolean fechaValida(String texto) {
-        return convertirFecha(texto) != null;
-    }
 }

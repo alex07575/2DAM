@@ -30,11 +30,11 @@ public class Almacenamiento {
         List<Cliente> clientes = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(CLIENTES, StandardCharsets.UTF_8)) {
             String linea;
-            clientes.sort();
             while ((linea = br.readLine()) != null){
                 String [] lineaDividida = linea.split(";");
                 Cliente c1 = new Cliente(Integer.parseInt(lineaDividida[0]),lineaDividida[1],lineaDividida[2],lineaDividida[3]);
                 clientes.add(c1);
+                clientes.sort(null);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -46,11 +46,11 @@ public class Almacenamiento {
         List<Pago> pagos = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(PAGOS, StandardCharsets.UTF_8)) {
             String linea;
-            pagos.sort();
             while ((linea = br.readLine()) != null){
                 String[] lineaDiv = linea.split(";");
                 Pago p1 = new Pago(Integer.parseInt(lineaDiv[0]),Integer.parseInt(lineaDiv[1]), LocalDate.parse(lineaDiv[2]),Double.parseDouble(lineaDiv[3]),Double.parseDouble(lineaDiv[4]),lineaDiv[5]);
                 pagos.add(p1);
+                pagos.sort(null);
             }
         } catch (IOException e){
             throw new RuntimeException(e);
