@@ -29,8 +29,7 @@ public class Principal {
     }
 
     public static boolean dosDecimales(double numero) {
-        double multiplicado = numero * 100;
-        return multiplicado % 1 == 0;
+        return numero * 100 == Math.round(numero * 100);
     }
 
     public static void altaCliente(Gasolinera gasolinera) {

@@ -32,7 +32,7 @@ public class AlmacenamientoCSV implements GestorArchivos{
         try (BufferedReader br = Files.newBufferedReader(CLIENTES, StandardCharsets.UTF_8)) {
             String linea;
             while ((linea = br.readLine()) != null){
-                String [] lineaDividida = linea.split(";");
+                String [] lineaDividida = linea.split(",");
                 Cliente c1 = new Cliente(Integer.parseInt(lineaDividida[0]),lineaDividida[1],lineaDividida[2],lineaDividida[3]);
                 clientes.add(c1);
                 clientes.sort(null);
@@ -48,7 +48,7 @@ public class AlmacenamientoCSV implements GestorArchivos{
         try (BufferedReader br = Files.newBufferedReader(PAGOS, StandardCharsets.UTF_8)) {
             String linea;
             while ((linea = br.readLine()) != null){
-                String[] lineaDiv = linea.split(";");
+                String[] lineaDiv = linea.split(",");
                 Pago p1 = new Pago(Integer.parseInt(lineaDiv[0]),Integer.parseInt(lineaDiv[1]), LocalDate.parse(lineaDiv[2]),Double.parseDouble(lineaDiv[3]),Double.parseDouble(lineaDiv[4]),lineaDiv[5]);
                 pagos.add(p1);
                 pagos.sort(null);
@@ -62,7 +62,7 @@ public class AlmacenamientoCSV implements GestorArchivos{
     public void guardarCliente(Cliente c){
         try(BufferedWriter bw = Files.newBufferedWriter(CLIENTES, StandardCharsets.UTF_8, StandardOpenOption.APPEND,StandardOpenOption.CREATE)) {
             String linea = c.getId() + "," + c.getNombre() + "," +
-                    c.getTelefono() + "," + c.getMatricula()+ ",";
+                    c.getTelefono() + "," + c.getMatricula()+ ";";
             bw.write(linea);
             bw.newLine();
             System.out.println("Cliente guardado: " + c.getNombre());
