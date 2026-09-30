@@ -9,12 +9,12 @@ import java.util.Date;
 import java.util.List;
 
 
-public class Almacenamiento {
+public class AlmacenamientoCSV implements GestorArchivos{
     private static final Path CARPETA = Path.of("datos");
     private static final Path CLIENTES = CARPETA.resolve("clientes.csv");
     private static final Path PAGOS = CARPETA.resolve("pagos.csv");
 
-    public static void preparar() throws IOException {
+    public AlmacenamientoCSV() throws  IOException{
         Files.createDirectories(CARPETA);
 
         if (Files.notExists(CLIENTES)) {
@@ -26,7 +26,8 @@ public class Almacenamiento {
         }
     }
 
-    public static List<Cliente> leerClientes() {
+    @Override
+    public List<Cliente> leerClientes() {
         List<Cliente> clientes = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(CLIENTES, StandardCharsets.UTF_8)) {
             String linea;
@@ -41,8 +42,8 @@ public class Almacenamiento {
         }
         return clientes;
     }
-
-    public static List<Pago> leerPagos(){
+    @Override
+    public List<Pago> leerPagos(){
         List<Pago> pagos = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(PAGOS, StandardCharsets.UTF_8)) {
             String linea;
@@ -57,8 +58,8 @@ public class Almacenamiento {
         }
         return pagos;
     }
-
-    public static void guardarCliente(Cliente c) throws IOException {
+    @Override
+    public void guardarCliente(Cliente c){
         try(BufferedWriter bw = Files.newBufferedWriter(CLIENTES, StandardCharsets.UTF_8, StandardOpenOption.APPEND,StandardOpenOption.CREATE)) {
             String linea = c.getId() + "," + c.getNombre() + "," +
                     c.getTelefono() + "," + c.getMatricula()+ ",";
@@ -71,8 +72,8 @@ public class Almacenamiento {
             System.out.println("Error al guardar cliente: " + e.getMessage());
         }
     }
-
-    public static void guardarPago(Pago p) throws IOException {
+    @Override
+    public void guardarPago(Pago p){
         try (BufferedWriter bw = Files.newBufferedWriter(PAGOS, StandardCharsets.UTF_8, StandardOpenOption.APPEND,StandardOpenOption.CREATE)) {
             String linea = p.getId() + "," + p.getId_cliente() + "," +
                     p.getFecha() + "," + p.getImporte() + "," +

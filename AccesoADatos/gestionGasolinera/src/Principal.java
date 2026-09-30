@@ -6,7 +6,7 @@ public class Principal {
     static Scanner teclado = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        Almacenamiento.preparar();
+        AlmacenamientoCSV a = new AlmacenamientoCSV();
         Gasolinera gasolinera = new Gasolinera();
         System.out.println("1. Alta de cliente");
         System.out.println("2. Listar clientes");

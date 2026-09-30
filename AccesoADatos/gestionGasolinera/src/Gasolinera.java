@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Gasolinera {
-
+    AlmacenamientoCSV a = new AlmacenamientoCSV();
     private List<Cliente> clientes;
     private List<Pago> pagos;
     private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -18,14 +18,14 @@ public class Gasolinera {
     }
 
     private void cargarClientes() throws IOException {
-        for (Cliente linea : Almacenamiento.leerClientes()) {
+        for (Cliente linea : a.leerClientes()) {
             Cliente cliente = new Cliente(linea.getId(),linea.getNombre(),linea.getTelefono(),linea.getMatricula());
             clientes.add(cliente);
         }
     }
 
     private void cargarPagos() throws IOException {
-        for (Pago linea : Almacenamiento.leerPagos()) {
+        for (Pago linea : a.leerPagos()) {
             Pago pago = new Pago(linea.getId(), linea.getId_cliente(), linea.getFecha(), linea.getImporte(), linea.getLitros(),linea.getCombustible());
             pagos.add(pago);
         }
@@ -70,7 +70,7 @@ public class Gasolinera {
                 telefono.trim(),
                 matricula.trim().toUpperCase()
         );
-        Almacenamiento.guardarCliente(cliente);
+        a.guardarCliente(cliente);
         clientes.add(cliente);
         System.out.println("Cliente registrado con ID " + cliente.getId() + ".");
     }
@@ -134,7 +134,7 @@ public class Gasolinera {
                 litros,
                 combustible.trim()
         );
-        Almacenamiento.guardarPago(pago);
+        a.guardarPago(pago);
         pagos.add(pago);
         Cliente cliente = buscarCliente(idCliente);
         System.out.println("Pago " + pago.getId() + " registrado para " + cliente.getNombre() + ": " + pago.getImporte() + " €.");
