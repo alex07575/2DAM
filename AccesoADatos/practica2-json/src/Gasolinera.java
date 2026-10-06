@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Gasolinera {
-    MigraCSVToJson json = new MigraCSVToJson();
+    MigraCSVToJson mj = new MigraCSVToJson();
     private List<Cliente> clientes;
     private List<Pago> pagos;
     private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -18,14 +18,14 @@ public class Gasolinera {
     }
 
     private void cargarClientes() throws IOException {
-        for (Cliente linea : json.leerClientes()) {
+        for (Cliente linea : mj.leerClientes()) {
             Cliente cliente = new Cliente(linea.getId(),linea.getNombre(),linea.getTelefono(),linea.getMatricula());
             clientes.add(cliente);
         }
     }
 
     private void cargarPagos() throws IOException {
-        for (Pago linea : json.leerPagos()) {
+        for (Pago linea : mj.leerPagos()) {
             Pago pago = new Pago(linea.getId(), linea.getId_cliente(), linea.getFecha(), linea.getImporte(), linea.getLitros(),linea.getCombustible());
             pagos.add(pago);
         }
@@ -70,7 +70,7 @@ public class Gasolinera {
                 telefono.trim(),
                 matricula.trim().toUpperCase()
         );
-        json.guardarCliente(cliente);
+        mj.guardarCliente(cliente);
         clientes.add(cliente);
         System.out.println("Cliente registrado con ID " + cliente.getId() + ".");
     }
@@ -135,7 +135,7 @@ public class Gasolinera {
                 litros,
                 combustible.trim()
         );
-        json.guardarPago(pago);
+        mj.guardarPago(pago);
         pagos.add(pago);
         Cliente cliente = buscarCliente(idCliente);
         System.out.println("Pago " + pago.getId() + " registrado para " + cliente.getNombre() + ": " + pago.getImporte() + " €.");
@@ -167,4 +167,5 @@ public class Gasolinera {
             return null;
         }
     }
+
 }

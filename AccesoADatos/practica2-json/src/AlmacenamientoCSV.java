@@ -10,9 +10,9 @@ import java.util.List;
 
 
 public class AlmacenamientoCSV implements GestorArchivos{
-    private static final Path CARPETA = Path.of("datos");
-    private static final Path CLIENTES = CARPETA.resolve("clientes.csv");
-    private static final Path PAGOS = CARPETA.resolve("pagos.csv");
+     public static final Path CARPETA = Path.of("datos");
+     public static final Path CLIENTES = CARPETA.resolve("clientes.csv");
+     public static final Path PAGOS = CARPETA.resolve("pagos.csv");
 
     public AlmacenamientoCSV() throws  IOException{
         Files.createDirectories(CARPETA);

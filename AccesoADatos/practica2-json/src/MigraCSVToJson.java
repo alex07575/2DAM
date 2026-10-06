@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,22 +11,28 @@ public class MigraCSVToJson implements GestorArchivos{
     private static final Path CARPETAJSON = Path.of("datosJ");
     private static final Path CLIENTESJSON = CARPETAJSON.resolve("clientes.json");
     private static final Path PAGOSJSON = CARPETAJSON.resolve("pagos.json");
-
     public MigraCSVToJson() throws IOException{
         Files.createDirectories(CARPETAJSON);
-        if (Files.notExists(CLIENTESJSON)) {
+        if(Files.notExists(AlmacenamientoCSV.CLIENTES)){
             Files.createFile(CLIENTESJSON);
+        } else {
+            leerClientes();
+
         }
 
-        if (Files.notExists(PAGOSJSON)) {
+        if(Files.notExists(AlmacenamientoCSV.PAGOS)){
             Files.createFile(PAGOSJSON);
+        } else {
+            leerPagos();
+
         }
+
     }
 
     @Override
     public List<Cliente> leerClientes() {
         List<Cliente> clientes = new ArrayList<>();
-        try (BufferedReader br = Files.newBufferedReader(CLIENTESJSON, StandardCharsets.UTF_8)) {
+        try (BufferedReader br = Files.newBufferedReader(AlmacenamientoCSV.CLIENTES, StandardCharsets.UTF_8)) {
             String linea;
             while ((linea = br.readLine()) != null){
                 String [] lineaDividida = linea.split(",");
@@ -46,7 +49,7 @@ public class MigraCSVToJson implements GestorArchivos{
     @Override
     public List<Pago> leerPagos() {
         List<Pago> pagos = new ArrayList<>();
-        try (BufferedReader br = Files.newBufferedReader(PAGOSJSON, StandardCharsets.UTF_8)) {
+        try (BufferedReader br = Files.newBufferedReader(AlmacenamientoCSV.PAGOS, StandardCharsets.UTF_8)) {
             String linea;
             while ((linea = br.readLine()) != null){
                 String[] lineaDiv = linea.split(",");
@@ -63,8 +66,8 @@ public class MigraCSVToJson implements GestorArchivos{
     @Override
     public void guardarCliente(Cliente c) {
         try(BufferedWriter bw = Files.newBufferedWriter(CLIENTESJSON, StandardCharsets.UTF_8, StandardOpenOption.APPEND,StandardOpenOption.CREATE)) {
-            String linea = "\n[" + "id: " + c.getId() + "," + c.getNombre() + "," +
-                    c.getTelefono() + "," + c.getMatricula()+ "\n]";
+            String linea = "[" + "\nid: " + c.getId() + "," + "nombre: " + c.getNombre() + ","
+                    + "telefono: " + c.getTelefono() + "," + "matricula: " + c.getMatricula() + "\n]";
             bw.write(linea);
             bw.newLine();
             System.out.println("Cliente guardado: " + c.getNombre());
@@ -78,9 +81,9 @@ public class MigraCSVToJson implements GestorArchivos{
     @Override
     public void guardarPago(Pago p) {
         try (BufferedWriter bw = Files.newBufferedWriter(PAGOSJSON, StandardCharsets.UTF_8, StandardOpenOption.APPEND,StandardOpenOption.CREATE)) {
-            String linea = p.getId() + "," + p.getId_cliente() + "," +
-                    p.getFecha() + "," + p.getImporte() + "," +
-                    p.getLitros() + "," + p.getCombustible()+ ";";
+            String linea = "[" + "\nid: " + p.getId() + "," + "ClienteId: " + p.getId_cliente() + "," +
+                     "fecha: " + p.getFecha() + "," + "importe: " + p.getImporte() + "," +
+                     "litros: " + p.getLitros() + "," + "combustible: " +p.getCombustible() + "\n]";
             bw.write(linea);
             bw.newLine();
             System.out.println("Pago guardado: $" + p.getImporte());
