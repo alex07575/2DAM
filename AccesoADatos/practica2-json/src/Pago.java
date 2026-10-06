@@ -44,13 +44,13 @@ public class Pago implements Comparable<Pago> {
 
     @Override
     public String toString() {
-        return "Pagos{" +
-                "id=" + id +
-                ", id_cliente=" + id_cliente +
-                ", fecha=" + fecha +
-                ", importe=" + importe +
-                ", litros=" + litros +
-                ", combustible='" + combustible + '\'' +
+        return "{" +
+                "id: " + id +
+                ", id_cliente: " + id_cliente +
+                ", fecha: " + fecha +
+                ", importe: " + importe +
+                ", litros: " + litros +
+                ", combustible: " + combustible + '\'' +
                 '}';
     }
 
