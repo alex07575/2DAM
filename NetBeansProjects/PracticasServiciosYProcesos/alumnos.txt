@@ -1,0 +1,4 @@
+Ana 3
+Maria 8,2
+Paco 5,6
+Chus 1,9
