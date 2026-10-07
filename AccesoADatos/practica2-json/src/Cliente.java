@@ -31,10 +31,9 @@ public class Cliente implements Comparable<Cliente> {
     public String toString() {
         return "{" +
                 "id: " + id +
-                ", nombre: " + nombre + '\'' +
+                ", nombre: " + nombre +
                 ", telefono: " + telefono +
-                ", matricula: " + matricula + '\'' +
-                '}';
+                ", matricula: " + matricula + '}';
     }
 
     public int getId() {

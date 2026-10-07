@@ -50,8 +50,7 @@ public class Pago implements Comparable<Pago> {
                 ", fecha: " + fecha +
                 ", importe: " + importe +
                 ", litros: " + litros +
-                ", combustible: " + combustible + '\'' +
-                '}';
+                ", combustible: " + combustible + '}';
     }
 
     public int getId() {

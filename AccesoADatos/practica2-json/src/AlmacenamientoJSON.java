@@ -13,78 +13,59 @@ public class AlmacenamientoJSON implements GestorArchivos{
     public static final Path CARPETA = Path.of("datosJ");
     public static final Path CLIENTES = CARPETA.resolve("clientes.json");
     public static final Path PAGOS = CARPETA.resolve("pagos.json");
+    public static final String JSON_OPEN = "{\n[\n";
+    public static final String JSON_CLOSE = "\n]\n}";
 
     public AlmacenamientoJSON() throws  IOException{
+        Files.deleteIfExists(CARPETA);
         Files.createDirectories(CARPETA);
+        Files.deleteIfExists(CLIENTES);
+        Files.createFile(CLIENTES);
+        Files.deleteIfExists(PAGOS);
+        Files.createFile(PAGOS);
+    }
 
-        if (Files.notExists(CLIENTES)) {
-            Files.createFile(CLIENTES);
-        }
-
-        if (Files.notExists(PAGOS)) {
-            Files.createFile(PAGOS);
-        }
+    private String ClienteJson(Cliente c){
+        return "";
+    }
+    private String PagoJson(Pago p){
+        return "";
     }
 
     @Override
     public List<Cliente> leerClientes() {
-        List<Cliente> clientes = new ArrayList<>();
-        try (BufferedReader br = Files.newBufferedReader(CLIENTES, StandardCharsets.UTF_8)) {
-            String linea;
-            while ((linea = br.readLine()) != null){
-                String [] lineaDividida = linea.split(",");
-                Cliente c1 = new Cliente(Integer.parseInt(lineaDividida[0]),lineaDividida[1],lineaDividida[2],lineaDividida[3]);
-                clientes.add(c1);
-                clientes.sort(null);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return clientes;
+        return List.of();
     }
     @Override
     public List<Pago> leerPagos(){
-        List<Pago> pagos = new ArrayList<>();
-        try (BufferedReader br = Files.newBufferedReader(PAGOS, StandardCharsets.UTF_8)) {
-            String linea;
-            while ((linea = br.readLine()) != null){
-                String[] lineaDiv = linea.split(",");
-                Pago p1 = new Pago(Integer.parseInt(lineaDiv[0]),Integer.parseInt(lineaDiv[1]), LocalDate.parse(lineaDiv[2]),Double.parseDouble(lineaDiv[3]),Double.parseDouble(lineaDiv[4]),lineaDiv[5]);
-                pagos.add(p1);
-                pagos.sort(null);
-            }
-        } catch (IOException e){
-            throw new RuntimeException(e);
-        }
-        return pagos;
+        return List.of();
     }
     @Override
     public void guardarCliente(Cliente c){
-        try(BufferedWriter bw = Files.newBufferedWriter(CLIENTES, StandardCharsets.UTF_8, StandardOpenOption.APPEND,StandardOpenOption.CREATE)) {
-            String linea = "\nid:" + "\"" + c.getId() + "\"" + "\"" + "nombre:" +  "\"" + "\"" + c.getNombre() +  "\"" + ","
-                    + "\"" + "telefono:" + "\"" + "\"" + c.getTelefono() + "\"" + "," + "\"" + "matricula:" + "\"" + "\"" + c.getMatricula() + "\"";
-            bw.write(linea);
-            bw.newLine();
-            System.out.println("Cliente guardado: " + c.getNombre());
-        } catch (FileNotFoundException e) {
-            System.out.println("Archivo de clientes no encontrado: " + e.getMessage());
+        List<Cliente> clientes = leerClientes();
+        clientes.add(c);
+        try (BufferedWriter bw = Files.newBufferedWriter(CLIENTES, StandardCharsets.UTF_8, StandardOpenOption.CREATE)){
+            bw.write(JSON_OPEN);
+            String clientes_en_string = clientes.stream().map(this::ClienteJson).reduce
+                    ((String s1, String s2) -> s1 + ",\n" + s2).orElse("");
+            bw.write(clientes_en_string);
+            bw.write(JSON_CLOSE);
         } catch (IOException e) {
-            System.out.println("Error al guardar cliente: " + e.getMessage());
+            System.out.println(e);
         }
     }
     @Override
     public void guardarPago(Pago p){
-        try (BufferedWriter bw = Files.newBufferedWriter(PAGOS, StandardCharsets.UTF_8, StandardOpenOption.APPEND,StandardOpenOption.CREATE)) {
-            String linea = "\nid:" + "\"" + "\"" + p.getId() + "\"" + "," + "\"" + "ClienteId:" + "\"" + "\"" + p.getId_cliente() + "\"" + ","
-                    + "\"" + "fecha:" + "\"" + "\"" + p.getFecha() + "\"" + "," + "\"" + "importe:" + "\"" + "\"" + p.getImporte() + "\"" + ","
-                    + "\"" + "litros:" + "\"" + "\"" + p.getLitros() + "\"" + "," + "\"" + "combustible:" + "\"" + p.getCombustible() + "\"";
-            bw.write(linea);
-            bw.newLine();
-            System.out.println("Pago guardado: $" + p.getImporte());
-        } catch (FileNotFoundException e) {
-            System.out.println("Archivo de pagos no encontrado: " + e.getMessage());
+        List<Pago> pagos = leerPagos();
+        pagos.add(p);
+        try (BufferedWriter bw = Files.newBufferedWriter(PAGOS, StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
+            bw.write(JSON_OPEN);
+            String pagos_en_string = pagos.stream().map(this::PagoJson).reduce
+                    ((String s1, String s2) -> s1 + ",\n" + s2).orElse("");
+            bw.write(pagos_en_string);
+            bw.write(JSON_CLOSE);
         } catch (IOException e) {
-            System.out.println("Error al guardar pago: " + e.getMessage());
+            System.out.println(e);
         }
     }
 }
