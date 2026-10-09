@@ -11,9 +11,10 @@ public class MigraCSVToJson {
     public MigraCSVToJson(Path origenCSV, Path destinoJSON) throws IOException {
         ARCHIVO_CLIENTE_CSV = origenCSV.resolve("clientes.csv");
         ARCHIVO_CLIENTE_JSON = destinoJSON.resolve("clientes.json");
-        ARCHIVO_PAGO_CSV = destinoJSON.resolve("pagos.csv");
+        ARCHIVO_PAGO_CSV = origenCSV.resolve("pagos.csv");
         ARCHIVO_PAGO_JSON = destinoJSON.resolve("pagos.json");
     }
+
 
 
 }
