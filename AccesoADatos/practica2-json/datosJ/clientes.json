@@ -1,3 +1,7 @@
 [
-{"id": 1,"nombre": "alexandru","telefono": "93263126","matricula": "9312 KLS"}
+{"id":1,"nombre":"alex","telefono":"7247256","matricula":"5231 KA"},
+{"id":2,"nombre":"julian","telefono":"12165176","matricula":"9235 FAR"},
+{"id":3,"nombre":"asier","telefono":"287245","matricula":"2351 PSR"},
+{"id":4,"nombre":"pedro","telefono":"74262331","matricula":"2671 LST"},
+{"id":5,"nombre":"jesus","telefono":"12634151","matricula":"1262 HER"}
 ]

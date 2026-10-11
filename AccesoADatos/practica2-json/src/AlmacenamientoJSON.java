@@ -79,7 +79,7 @@ public class AlmacenamientoJSON implements GestorArchivos{
     public void guardarCliente(Cliente c){
         List<Cliente> clientes = leerClientes();
         clientes.add(c);
-        try (BufferedWriter bw = Files.newBufferedWriter(CLIENTES, StandardCharsets.UTF_8, StandardOpenOption.CREATE)){
+        try (BufferedWriter bw = Files.newBufferedWriter(CLIENTES, StandardCharsets.UTF_8)){
             bw.write(JSON_OPEN);
             String clientes_en_string = clientes.stream().map(this::ClienteJson).reduce
                     ((String s1, String s2) -> s1 + ",\n" + s2).orElse("");
@@ -93,7 +93,7 @@ public class AlmacenamientoJSON implements GestorArchivos{
     public void guardarPago(Pago p){
         List<Pago> pagos = leerPagos();
         pagos.add(p);
-        try (BufferedWriter bw = Files.newBufferedWriter(PAGOS, StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
+        try (BufferedWriter bw = Files.newBufferedWriter(PAGOS, StandardCharsets.UTF_8)) {
             bw.write(JSON_OPEN);
             String pagos_en_string = pagos.stream().map(this::PagoJson).reduce
                     ((String s1, String s2) -> s1 + ",\n" + s2).orElse("");

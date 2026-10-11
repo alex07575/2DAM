@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -7,24 +8,36 @@ public class Principal {
     static Scanner teclado = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
+        try {
+            MigraCSVToJson migracion = new MigraCSVToJson(
+                    Path.of("datos"),
+                    Path.of("datosJ")
+            );
+            migracion.ejecutar();
+        } catch (IOException e) {
+            System.out.println("Error en migración: " + e.getMessage());
+        }
         Gasolinera gasolinera = new Gasolinera();
-        System.out.println("1. Alta de cliente");
-        System.out.println("2. Listar clientes");
-        System.out.println("3. Buscar clientes");
-        System.out.println("4. Registrar pago");
-        System.out.println("5. Consultar pagos");
-        System.out.println("0. Salir");
-        System.out.println("Ponga su opción: ");
-        int opcion = teclado.nextInt();
-        teclado.nextLine();
-        switch (opcion) {
-            case 1 -> altaCliente(gasolinera);
-            case 2 -> gasolinera.listarClientes();
-            case 3 -> buscarCliente(gasolinera);
-            case 4 -> procesarPago(gasolinera);
-            case 5 -> gasolinera.listarPagos();
-            case 0 -> System.out.println("Hasta pronto.");
-            default -> System.out.println("Opción no válida.");
+        int opcion = 1;
+        while (opcion != -1){
+            System.out.println("1. Alta de cliente");
+            System.out.println("2. Listar clientes");
+            System.out.println("3. Buscar clientes");
+            System.out.println("4. Registrar pago");
+            System.out.println("5. Consultar pagos");
+            System.out.println("0. Salir");
+            System.out.println("Ponga su opción: ");
+            opcion = teclado.nextInt();
+            teclado.nextLine();
+            switch (opcion) {
+                case 1 -> altaCliente(gasolinera);
+                case 2 -> gasolinera.listarClientes();
+                case 3 -> buscarCliente(gasolinera);
+                case 4 -> procesarPago(gasolinera);
+                case 5 -> gasolinera.listarPagos();
+                case 0 -> System.out.println("Hasta pronto.");
+                default -> System.out.println("Opción no válida.");
+            }
         }
     }
 
