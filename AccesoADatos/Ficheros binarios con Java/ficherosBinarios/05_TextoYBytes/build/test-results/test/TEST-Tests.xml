@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Tests" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-13T07:02:24.384Z" hostname="LB-2DAM-01" time="0.046">
+  <properties/>
+  <testcase name="guardaUtf8YRecuperaTexto()" classname="Tests" time="0.038"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

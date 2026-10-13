@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Tests" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-13T07:43:50.162Z" hostname="LB-2DAM-01" time="0.118">
+  <properties/>
+  <testcase name="pasoDSoloTresBytesBgr()" classname="Tests" time="0.034"/>
+  <testcase name="pasoECopiaConservandoTodosLosDemasBytes()" classname="Tests" time="0.062"/>
+  <testcase name="rechazaEntradasFueraDelContrato()" classname="Tests" time="0.003"/>
+  <testcase name="pasoCPaddingYOrientacion()" classname="Tests" time="0.002"/>
+  <testcase name="pasoBCabeceraLittleEndian()" classname="Tests" time="0.004"/>
+  <testcase name="recursoIncluidoSePuedeModificar()" classname="Tests" time="0.002"/>
+  <testcase name="pasoAFirmaYLongitud()" classname="Tests" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

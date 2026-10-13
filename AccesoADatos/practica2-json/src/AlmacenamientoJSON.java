@@ -12,8 +12,8 @@ public class AlmacenamientoJSON implements GestorArchivos{
     public static final Path CARPETA = Path.of("datosJ");
     public static final Path CLIENTES = CARPETA.resolve("clientes.json");
     public static final Path PAGOS = CARPETA.resolve("pagos.json");
-    public static final String JSON_OPEN = "[\n";
-    public static final String JSON_CLOSE = "\n]";
+    public static final String JSON_OPEN = "{\n[\n";
+    public static final String JSON_CLOSE = "\n]\n}";
 
     public AlmacenamientoJSON() throws  IOException{
         if (!Files.exists(CARPETA)) Files.createDirectories(CARPETA);
@@ -21,11 +21,11 @@ public class AlmacenamientoJSON implements GestorArchivos{
         if (!Files.exists(PAGOS)) Files.writeString(PAGOS, JSON_OPEN + JSON_CLOSE);
     }
 
-    private String ClienteJson(Cliente c) {
+    private String ClienteToJson(Cliente c) {
         return "{\"id\": " + c.getId() + ",\"nombre\": \"" + c.getNombre() + "\",\"telefono\": \""
                 + c.getTelefono() + "\",\"matricula\": \"" + c.getMatricula() + "\"}";
     }
-    private String PagoJson(Pago p) {
+    private String PagoToJson(Pago p) {
         return "{\"id\": " + p.getId() + ",\"id_cliente\": " + p.getId_cliente()
                 + ",\"fecha\": \"" + p.getFecha() + "\",\"importe\": " + p.getImporte()
                 + ",\"litros\": " + p.getLitros() + ",\"combustible\": \"" + p.getCombustible() + "\"}";
@@ -79,9 +79,9 @@ public class AlmacenamientoJSON implements GestorArchivos{
     public void guardarCliente(Cliente c){
         List<Cliente> clientes = leerClientes();
         clientes.add(c);
-        try (BufferedWriter bw = Files.newBufferedWriter(CLIENTES, StandardCharsets.UTF_8)){
+        try (BufferedWriter bw = Files.newBufferedWriter(CLIENTES, StandardCharsets.UTF_8, StandardOpenOption.CREATE)){
             bw.write(JSON_OPEN);
-            String clientes_en_string = clientes.stream().map(this::ClienteJson).reduce
+            String clientes_en_string = clientes.stream().map(this::ClienteToJson).reduce
                     ((String s1, String s2) -> s1 + ",\n" + s2).orElse("");
             bw.write(clientes_en_string);
             bw.write(JSON_CLOSE);
@@ -93,9 +93,9 @@ public class AlmacenamientoJSON implements GestorArchivos{
     public void guardarPago(Pago p){
         List<Pago> pagos = leerPagos();
         pagos.add(p);
-        try (BufferedWriter bw = Files.newBufferedWriter(PAGOS, StandardCharsets.UTF_8)) {
+        try (BufferedWriter bw = Files.newBufferedWriter(PAGOS, StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
             bw.write(JSON_OPEN);
-            String pagos_en_string = pagos.stream().map(this::PagoJson).reduce
+            String pagos_en_string = pagos.stream().map(this::PagoToJson).reduce
                     ((String s1, String s2) -> s1 + ",\n" + s2).orElse("");
             bw.write(pagos_en_string);
             bw.write(JSON_CLOSE);

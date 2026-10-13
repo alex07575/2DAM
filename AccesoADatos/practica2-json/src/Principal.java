@@ -9,10 +9,7 @@ public class Principal {
 
     public static void main(String[] args) throws IOException {
         try {
-            MigraCSVToJson migracion = new MigraCSVToJson(
-                    Path.of("datos"),
-                    Path.of("datosJ")
-            );
+            MigraCSVToJson migracion = new MigraCSVToJson(Path.of("datos"), Path.of("datosJ"));
             migracion.ejecutar();
         } catch (IOException e) {
             System.out.println("Error en migración: " + e.getMessage());
