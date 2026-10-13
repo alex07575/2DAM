@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Principal {
     static Scanner teclado = new Scanner(System.in);
-
     public static void main(String[] args) throws IOException {
         try {
             MigraCSVToJson migracion = new MigraCSVToJson(Path.of("datos"), Path.of("datosJ"));
@@ -138,4 +137,5 @@ public class Principal {
             System.out.println("No se ha podido guardar el pago.");
         }
     }
+
 }

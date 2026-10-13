@@ -1,6 +1,8 @@
 {
 [
+{"id": 3,"id_cliente": 5,"fecha": "2026-10-13","importe": 25.62,"litros": 12.83,"combustible": "Gasolina"},
 {"id": 2,"id_cliente": 2,"fecha": "2026-10-01","importe": 64.63,"litros": 22.23,"combustible": "Diésel;"},
-{"id": 1,"id_cliente": 1,"fecha": "2026-09-26","importe": 84.45,"litros": 41.62,"combustible": "Diésel;"}
+{"id": 1,"id_cliente": 1,"fecha": "2026-09-26","importe": 84.45,"litros": 41.62,"combustible": "Diésel;"},
+{"id": 4,"id_cliente": 3,"fecha": "2026-10-13","importe": 91.51,"litros": 39.75,"combustible": "Diesel"}
 ]
 }

@@ -35,7 +35,7 @@ public class MigraCSVToJson {
     public void ejecutar() throws IOException {
         Scanner sc = new Scanner(System.in);
         if(!Files.exists(ARCHIVO_CLIENTE_JSON) && !Files.exists(ARCHIVO_PAGO_JSON)){
-            System.out.println("Quieres migrar? ");
+            System.out.println("Quieres migrar CSV a Json? ");
             String op = sc.nextLine().toLowerCase();
             if(op.equals("si")) {
                 System.out.println("Iniciando migración CSV a JSON");
@@ -52,8 +52,6 @@ public class MigraCSVToJson {
         } else {
             System.out.println("No se hace migración, ya existen ficheros JSON");
         }
-
-
     }
 }
 
