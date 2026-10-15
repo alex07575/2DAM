@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/01_Bytes/01_Bytes.iml" filepath="$PROJECT_DIR$/01_Bytes/01_Bytes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02_InterpretarBytes/02_InterpretarBytes.iml" filepath="$PROJECT_DIR$/02_InterpretarBytes/02_InterpretarBytes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03_Escribir/03_Escribir.iml" filepath="$PROJECT_DIR$/03_Escribir/03_Escribir.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04_Leer/04_Leer.iml" filepath="$PROJECT_DIR$/04_Leer/04_Leer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/05_TextoYBytes/05_TextoYBytes.iml" filepath="$PROJECT_DIR$/05_TextoYBytes/05_TextoYBytes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/06_EscribirEstructurado/06_EscribirEstructurado.iml" filepath="$PROJECT_DIR$/06_EscribirEstructurado/06_EscribirEstructurado.iml" />
+      <module fileurl="file://$PROJECT_DIR$/07_LeerEstructurado/07_LeerEstructurado.iml" filepath="$PROJECT_DIR$/07_LeerEstructurado/07_LeerEstructurado.iml" />
+      <module fileurl="file://$PROJECT_DIR$/08_ModificarBMP/08_ModificarBMP.iml" filepath="$PROJECT_DIR$/08_ModificarBMP/08_ModificarBMP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ficherosBinarios.iml" filepath="$PROJECT_DIR$/.idea/ficherosBinarios.iml" />
+    </modules>
+  </component>
+</project>
