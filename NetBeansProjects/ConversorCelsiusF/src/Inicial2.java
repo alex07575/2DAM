@@ -1,17 +1,17 @@
 
 import javax.swing.Icon;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author Alumno Mañana
  */
 public class Inicial2 extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Inicial2.class.getName());
 
     /**
@@ -30,49 +30,53 @@ public class Inicial2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Comer = new javax.swing.JButton();
-        Indicacion = new javax.swing.JLabel();
-        OptionPanelComida = new javax.swing.JOptionPane();
+        lblMensaje = new javax.swing.JLabel();
+        botonPregunta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Comer.setText("Comer");
-        Comer.addActionListener(this::ComerActionPerformed);
+        botonPregunta.setText("Preguntar");
+        botonPregunta.addActionListener(this::botonPreguntaActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(156, 192, Short.MAX_VALUE)
-                .addComponent(OptionPanelComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Indicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(279, 279, 279)
-                .addComponent(Comer)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(lblMensaje))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(256, 256, 256)
+                        .addComponent(botonPregunta)))
+                .addContainerGap(313, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(OptionPanelComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Indicacion))
-                .addGap(55, 55, 55)
-                .addComponent(Comer)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addGap(78, 78, 78)
+                .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(botonPregunta)
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ComerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComerActionPerformed
-            int opcion = 
-    }//GEN-LAST:event_ComerActionPerformed
-          
+    private void botonPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPreguntaActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Desea continuar?", "Confirmación",
+                JOptionPane.YES_NO_CANCEL_OPTION);
+        if (opcion == JOptionPane.YES_OPTION) {
+            lblMensaje.setText("Has pulsado SÍ");
+        } else if (opcion == JOptionPane.NO_OPTION) {
+            lblMensaje.setText("Has pulsado NO");
+        } else {
+            lblMensaje.setText("Has cancelado");
+        }
+    }//GEN-LAST:event_botonPreguntaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -99,8 +103,7 @@ public class Inicial2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Comer;
-    private javax.swing.JLabel Indicacion;
-    private javax.swing.JOptionPane OptionPanelComida;
+    private javax.swing.JButton botonPregunta;
+    private javax.swing.JLabel lblMensaje;
     // End of variables declaration//GEN-END:variables
 }
