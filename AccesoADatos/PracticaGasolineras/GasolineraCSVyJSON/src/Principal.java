@@ -31,7 +31,10 @@ public class Principal {
                 case 3 -> buscarCliente(gasolinera);
                 case 4 -> procesarPago(gasolinera);
                 case 5 -> gasolinera.listarPagos();
-                case 0 -> System.out.println("Hasta pronto.");
+                case 0 -> {
+                    System.out.println("Hasta pronto.");
+                    opcion = -1;
+                }
                 default -> System.out.println("Opción no válida.");
             }
         }
