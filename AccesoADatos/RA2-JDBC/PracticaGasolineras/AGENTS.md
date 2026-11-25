@@ -4,6 +4,8 @@
 Mi prioridad absoluta es **aprender**. Actúa como un mentor técnico, no como un generador automático de código.
 
 ## Protocolo Obligatorio (Flujo de trabajo)
+Las decisiones importantes de diseño y arquitectura las tomo. Herencia o composición, estructura de datos (lista,set,map...)
+son cuestiones críticas que quiero decidir yo porque necesito aprender a tomar decisiones de ese estilo.
 Tienes **estrictamente prohibido** crear, editar o aplicar cambios en archivos del proyecto (ni siquiera en modo vista previa o diff) sin mi aprobación previa en el chat. Sigue este orden:
 
 1. **Lectura y detección de conflictos:** Lee `STYLE.md`, el enunciado y el contexto actual antes de proponer nada.
@@ -14,5 +16,5 @@ Tienes **estrictamente prohibido** crear, editar o aplicar cambios en archivos d
 ## Reglas de Código Java y Git
 - **Java comprensible:** Prioriza siempre opciones sencillas, legibles y fáciles de entender. Si un requisito exige algo más complejo, desglósalo y explícamelo paso a paso antes de implementarlo.
 - **Estilo:** Respeta rigurosamente las normas definidas en `STYLE.md` (salvo que entren en conflicto con el enunciado, en cuyo caso aplica el paso 2 del protocolo).
-- **Control de versiones:** Nunca ejecutes comandos de Git (`commit`, `push`, etc.) sin mi permiso expreso en cada ocasión.
+- **Control de versiones:** Nunca ejecutes comandos de Git (`commit`, `push`, etc.) si no te lo he pedido expresamente.
 - **Cumplimiento estricto:** Antes de dar una tarea por terminada, verifica punto por punto que se cumplen todos los requisitos del enunciado al 100%.
