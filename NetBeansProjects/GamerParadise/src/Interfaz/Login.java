@@ -55,7 +55,6 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblLogo1 = new javax.swing.JLabel();
         PanelMain = new javax.swing.JPanel();
         labelInicSesion = new javax.swing.JLabel();
         CampoUsuario = new javax.swing.JTextField();
@@ -71,9 +70,6 @@ public class Login extends javax.swing.JFrame {
         labelGamers = new javax.swing.JLabel();
         labelMandoFoto = new javax.swing.JLabel();
         labelParadise = new javax.swing.JLabel();
-
-        lblLogo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen_lateral_original.png"))); // NOI18N
-        lblLogo1.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GamerParadise");
@@ -419,6 +415,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel labelMandoFoto;
     private javax.swing.JLabel labelParadise;
     private javax.swing.JLabel labelUsuario;
-    private javax.swing.JLabel lblLogo1;
     // End of variables declaration//GEN-END:variables
 }
